@@ -25,40 +25,35 @@
     <tbody>
 
         <?php
-        // jumlahkan data berdasarkan id_user in data_absen yang sama
-        // ambil data berdasarkan id_user
-        $sql = "SELECT * FROM data_absen GROUP BY id_user";
+        // Jumlahkan data berdasarkan id_bln dan jumlahkan data berdasarkan id_user dan id_bln
+        $sql = "SELECT id_bln, id_user, COUNT(id_user) AS jumlah FROM data_absen GROUP BY id_bln, id_user";
         $query = $conn->query($sql);
-        $no = 0;
+        $no = 1;
         while ($data = $query->fetch_assoc()) {
-            $id_user = $data['id_user'];
             $id_bln = $data['id_bln'];
-            $sql2 = "SELECT * FROM detail_user WHERE id_user='$id_user'";
+            $id_user = $data['id_user'];
+            $jumlah = $data['jumlah'];
+
+            // Ambil nama bulan
+            $sql2 = "SELECT nama_bln FROM bulan WHERE id_bln = '$id_bln'";
             $query2 = $conn->query($sql2);
             $data2 = $query2->fetch_assoc();
-            $name = $data2['name_user'] ?? "-";
-            $nis = $data2['nis_user'] ?? "-";
-            $sql3 = "SELECT * FROM data_absen WHERE id_user='$id_user'";
+            $nama_bln = $data2['nama_bln'];
+
+            // Ambil nama user
+            $sql3 = "SELECT name_user, nis_user FROM detail_user WHERE id_user = '$id_user'";
             $query3 = $conn->query($sql3);
-            $jumlah = $query3->num_rows;
-            $sql4 = "SELECT * FROM bulan WHERE id_bln='$id_bln'";
-            $query4 = $conn->query($sql4);
-            $data4 = $query4->fetch_assoc();
-            $bulan = $data4['nama_bln'] ?? "-";
-           
-            $no++;
-
-            echo "<tr>
-                <td>$no</td>
-                    <td>$nis</td>
-                    <td>$name</td>
-                    <td>$bulan</td>
-                    <td>$jumlah</td>
-                </tr>";
-        }
-
-
-
+            $data3 = $query3->fetch_assoc();
+            $nama = $data3['name_user']??'-';
+            $nis = $data3['nis_user']??'-';
         ?>
+            <tr>
+                <td><?= $no++; ?></td>
+                <td><?= $nis; ?></td>
+                <td><?= $nama; ?></td>
+                <td><?= $nama_bln; ?></td>
+                <td><?= $jumlah; ?></td>
+            </tr>
+        <?php } ?>
     </tbody>
 </table>
