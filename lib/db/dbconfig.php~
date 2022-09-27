@@ -1,0 +1,15 @@
+<?php 
+    /**
+     * 
+     *  Absensi Siswa CV.Saung IT Bumiayu
+     *  CV.Saung IT Bumiayu
+     *  fb.me/M Def.ofdraw
+     *  
+     */
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpwd = "";
+    $dbname = "absensi_tes";
+
+    $conn = new mysqli($dbhost, $dbuser, $dbpwd, $dbname);
+ ?>
