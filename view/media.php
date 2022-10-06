@@ -87,30 +87,50 @@
 
   <script>
     $(document).ready(function() {
-      $('#datatables').DataTable({
+      $('.datatables').DataTable({
         responsive: true,
         dom: "Bfrtip",
+
         buttons: [{
+            title: '',
+
             extend: "copy",
             className: "btn-sm"
           },
           {
+            title: '',
+
             extend: "csv",
             className: "btn-sm"
           },
           {
+            title: '',
             extend: "excel",
             className: "btn-sm"
+
           },
+
           {
+            title: '',
+            messageTop: '<div style="text-align:center"><h3>CV.Saung Information Technology Bumiayu</h3><h4>JURNAL LKP</h4></div>',
+            messageBottom: '<div style="text-align:center"><h4>Mengetahui</h4><br><br><br><br><br><h4>_________________________</h4></div>',
+
             extend: "pdf",
             className: "btn-sm"
           },
           {
+            title: '',
+            messageTop: '<div style="text-align:center"><h3>CV.Saung Information Technology Bumiayu</h3><h4>JURNAL LKP</h4></div>',
+            messageBottom: '<div style="text-align:center"><h4>Mengetahui</h4><br><br><br><br><br><h4>_________________________</h4></div>',
             extend: "print",
             className: "btn-sm"
           },
+
         ],
+
+
+
+
       });
     });
   </script>
